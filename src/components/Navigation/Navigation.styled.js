@@ -2,16 +2,16 @@ import { NavLink } from 'react-router-dom';
 import { styled } from 'styled-components';
 // import { StyledContainer } from 'styles/GlobalStyles';
 
-export const NavStyledContainer = styled(StyledContainer)`
-  @media only screen and (min-width: 768px) and (max-width: 1279px) {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  @media only screen and (min-width: 1280px) {
-    padding-top: 40px;
-    padding-bottom: 28px;
-  }
-`;
+// export const NavStyledContainer = styled(StyledContainer)`
+//   @media only screen and (min-width: 768px) and (max-width: 1279px) {
+//     padding-left: 0;
+//     padding-right: 0;
+//   }
+//   @media only screen and (min-width: 1280px) {
+//     padding-top: 40px;
+//     padding-bottom: 28px;
+//   }
+// `;
 
 export const StyledNavBox = styled.nav``;
 
