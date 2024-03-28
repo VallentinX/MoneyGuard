@@ -1,6 +1,6 @@
 import React from 'react';
 
-import style from './Modal.css';
+import style from './Modal.module.css';
 
 const Modal = function () {
   return (
