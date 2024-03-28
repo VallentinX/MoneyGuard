@@ -82,6 +82,7 @@
 .round {
   border-radius: 34px;
 }
+
 .round:before {
   border-radius: 50%;
 }
