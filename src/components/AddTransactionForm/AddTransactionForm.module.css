@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.container {
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+.cancelButton {
+  display: flex;
+}
