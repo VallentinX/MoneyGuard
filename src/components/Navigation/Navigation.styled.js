@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { styled } from 'styled-components';
-// import { StyledContainer } from 'styles/GlobalStyles';
+import { StyledContainer } from 'styles/GlobalStyles';
 
 export const NavStyledContainer = styled(StyledContainer)`
   @media only screen and (min-width: 768px) and (max-width: 1279px) {
