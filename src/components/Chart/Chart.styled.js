@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 export const StyledChartP = styled.p`
   position: absolute;
   left: 50%;
@@ -10,6 +11,7 @@ export const StyledChartP = styled.p`
   font-weight: 600;
   letter-spacing: 2px;
 `;
+
 export const StyledChartDiv = styled.div`
   position: relative;
   width: 280px;

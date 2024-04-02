@@ -1,4 +1,4 @@
-import Chart from 'components/Chart/Chart';
+// import Chart from 'components/Chart/Chart';
 // import StatisticsDashboard from 'components/StatisticsDashboard/StatisticsDashboard';
 // import StatisticsTable from 'components/StatisticsTable/StatisticsTable';
 
@@ -75,7 +75,7 @@ const StatisticsTab = () => {
         }}
       >
         <StyledStatisticTitle>Statistics</StyledStatisticTitle>
-        <Chart dataDoughnut={dataDoughnut} categories={categories} />
+        {/* <Chart dataDoughnut={dataDoughnut} categories={categories} /> */}
       </StyledStatisticDivChart>
       <div
         style={{

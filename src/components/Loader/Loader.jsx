@@ -1,6 +1,6 @@
 import React from 'react';
 import { RotatingLines } from 'react-loader-spinner';
-import { StyledLoaderBackdrop } from './Loader.styled';
+import { StyledLoaderBackdrop } from './Loader';
 
 const Loader = () => {
   return (
