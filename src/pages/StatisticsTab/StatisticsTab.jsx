@@ -1,6 +1,6 @@
 import Chart from 'components/Chart/Chart';
-import StatisticsDashboard from 'components/StatisticsDashboard/StatisticsDashboard';
-import StatisticsTable from 'components/StatisticsTable/StatisticsTable';
+// import StatisticsDashboard from 'components/StatisticsDashboard/StatisticsDashboard';
+// import StatisticsTable from 'components/StatisticsTable/StatisticsTable';
 
 import { selectCategoriesSummary } from '../../redux/transactions/selectors';
 
@@ -82,8 +82,8 @@ const StatisticsTab = () => {
           zIndex: '2',
         }}
       >
-        <StatisticsDashboard />
-        <StatisticsTable categories={categories} dataDoughnut={dataDoughnut} />
+        {/* <StatisticsDashboard /> */}
+        {/* <StatisticsTable categories={categories} dataDoughnut={dataDoughnut} /> */}
       </div>
     </StyledStatisticDivMain>
   );
