@@ -7,7 +7,6 @@ export const fetchTransactionsThunk = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await swaggerApi.get('transactions');
-
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -64,7 +63,6 @@ export const updateTransactionThunk = createAsyncThunk(
       amount: body.amount,
       categoryId: body.categoryId,
     };
-
     try {
       const { data } = await swaggerApi.patch(
         `transactions/${body.id}`,
@@ -89,7 +87,6 @@ export const fetchTransactionCategory = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await swaggerApi.get('transaction-categories');
-
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -99,13 +96,11 @@ export const fetchTransactionCategory = createAsyncThunk(
 
 export const fetchTransactionsSummary = createAsyncThunk(
   'transactionsSummary',
-
   async ({ month, year }, { rejectWithValue }) => {
     try {
       const { data } = await swaggerApi.get(
         `transactions-summary?month=${month}&year=${year}`
       );
-
       return data;
     } catch (error) {
       return rejectWithValue(error.message);

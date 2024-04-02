@@ -22,7 +22,6 @@ export const registerThunk = createAsyncThunk(
         email: credentials.email,
         password: credentials.password,
       };
-
       const { data } = await swaggerApi.post(
         'auth/sign-up',
         updatedCredentials
@@ -82,7 +81,6 @@ export const logoutThunk = createAsyncThunk(
         case 401:
           toast.error('Bearer auth failed. You are not authorized to log out.');
           break;
-
         default:
           toast.warning(`Something went wrong. Please try again later.`);
           break;

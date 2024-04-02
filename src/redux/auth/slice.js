@@ -5,7 +5,6 @@ import {
   refreshThunk,
   registerThunk,
 } from './operations';
-
 import {
   addTransactionThunk,
   deleteTransactionThunk,

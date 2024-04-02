@@ -38,7 +38,6 @@ export const selectFIltered = (state, sortCriteria) => {
           ? b.amount - a.amount
           : a.amount - b.amount;
       });
-
       break;
     case 'category':
       sortedTransactions.sort((a, b) => {
@@ -52,7 +51,6 @@ export const selectFIltered = (state, sortCriteria) => {
           ? categoryB.localeCompare(categoryA)
           : categoryA.localeCompare(categoryB);
       });
-
       break;
     default:
       return sortedTransactions.sort(
