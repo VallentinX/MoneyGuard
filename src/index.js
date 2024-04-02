@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { App } from 'components/App';
 import 'modern-normalize/modern-normalize.css';
 import { Provider } from 'react-redux';
-import { persistor, store } from 'redux/store';
+import { persistor, store } from './redux/store.js';
 import { PersistGate } from 'redux-persist/integration/react';
 import { GlobalStyles } from 'styles/GlobalStyles';
 import { BrowserRouter } from 'react-router-dom';
@@ -14,10 +14,10 @@ import 'react-toastify/dist/ReactToastify.css';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider>
     <ThemeProvider theme={theme}>
-    <BrowserRouter basename="project-money-guard">
-    <PersistGate loading={null} persistor={persistor}>
-     <App />
-     <ToastContainer
+      <BrowserRouter basename="project-money-guard">
+        <PersistGate loading={null} persistor={persistor}>
+          <App />
+          <ToastContainer
             position="top-right"
             autoClose={3000}
             hideProgressBar={false}
@@ -29,9 +29,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             pauseOnHover
             theme="light"
           />
-    <GlobalStyles />
-    </PersistGate>
-    </BrowserRouter>
+          <GlobalStyles />
+        </PersistGate>
+      </BrowserRouter>
     </ThemeProvider>
   </Provider>
 );
