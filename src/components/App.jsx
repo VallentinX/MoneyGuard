@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ModalTransaction from './ModalTransaction/ModalTransaction.jsx';
 import { Suspense, lazy, useEffect } from 'react';
-import { refreshThunk } from 'redux/auth/operations';
+import { refreshThunk } from '../redux/auth/operations.js';
 import PrivateRoute from 'routes/PrivateRoute';
 import Loader from './Loader/Loader';
 import MediaRoutes from 'routes/MediaRoutes';
