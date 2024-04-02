@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import loginTablet from '../../images/login-bg/bg-login-tablet.webp';
-import loginDesktop from '../../images/login-bg/bg-login-web.webp';
+// import loginTablet from '../../images/login-bg/bg-login-tablet.webp';
+// import loginDesktop from '../../images/login-bg/bg-login-web.webp';
 
 export const StyledTitle = styled.h1`
   font-size: 40px;
