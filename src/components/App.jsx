@@ -4,7 +4,7 @@ import ModalTransaction from './ModalTransaction/ModalTransaction.jsx';
 import { Suspense, lazy, useEffect } from 'react';
 import { refreshThunk } from '../redux/auth/operations.js';
 import PrivateRoute from 'routes/PrivateRoute';
-import Loader from './Loader/Loader';
+import Loader from '../components/Loader/Loader.jsx';
 import MediaRoutes from 'routes/MediaRoutes';
 import { selectIsRefresh } from '../redux/auth/selectors.js';
 
