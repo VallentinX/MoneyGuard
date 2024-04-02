@@ -9,12 +9,12 @@ const HomeTab = () => {
   const isTable = useMediaQuery({
     query: '(min-width:768px)',
   });
-  return (
-    <StyledHomeTabContainer>
-      {isTable ? <TransactionsList /> : <MobileList />}
-      <ButtonAddTransactions />
-    </StyledHomeTabContainer>
-  );
+  // return (
+  //   <StyledHomeTabContainer>
+  //     {isTable ? <TransactionsList /> : <MobileList />}
+  //     <ButtonAddTransactions />
+  //   </StyledHomeTabContainer>
+  // );
 };
 
 export default HomeTab;

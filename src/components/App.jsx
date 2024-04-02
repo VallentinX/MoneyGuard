@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import Modal from './ModalTransaction/ModalTransaction.jsx';
+import ModalTransaction from './ModalTransaction/ModalTransaction.jsx';
 import { Suspense, lazy, useEffect } from 'react';
 import { refreshThunk } from 'redux/auth/operations';
 import PrivateRoute from 'routes/PrivateRoute';
@@ -9,12 +9,12 @@ import MediaRoutes from 'routes/MediaRoutes';
 import selectIsRefresh from '../redux/auth/selectors.js';
 
 // lazy loading
-const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
-const RegistrationPage = lazy(() =>
-  import('pages/RegistrationPage/RegistrationPage')
-);
+// const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
+// const RegistrationPage = lazy(() =>
+//   import('pages/RegistrationPage/RegistrationPage')
+// );
 const PageNotFound = lazy(() => import('pages/PageNotFound/PageNotFound'));
-const DashboardPage = lazy(() => import('pages/DashboardPage/DashboardPage'));
+// const DashboardPage = lazy(() => import('pages/DashboardPage/DashboardPage'));
 const CurrencyTab = lazy(() => import('pages/CurrencyTab/CurrencyTab'));
 const HomeTab = lazy(() => import('pages/HomeTab/HomeTab'));
 const StatisticsTab = lazy(() => import('pages/StatisticsTab/StatisticsTab'));
@@ -50,7 +50,7 @@ export const App = () => {
         element={
           <Suspense fallback={<Loader />}>
             {/* <DashboardPage /> */}
-            <Modal />
+            <ModalTransaction />
             {/* Cristian am pus modalul tau aici */}
           </Suspense>
         }
