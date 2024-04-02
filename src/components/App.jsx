@@ -16,7 +16,7 @@ import selectIsRefresh from '../redux/auth/selectors.js';
 const PageNotFound = lazy(() => import('pages/PageNotFound/PageNotFound'));
 // const DashboardPage = lazy(() => import('pages/DashboardPage/DashboardPage'));
 const CurrencyTab = lazy(() => import('pages/CurrencyTab/CurrencyTab'));
-const HomeTab = lazy(() => import('pages/HomeTab/HomeTab'));
+// const HomeTab = lazy(() => import('pages/HomeTab/HomeTab'));
 const StatisticsTab = lazy(() => import('pages/StatisticsTab/StatisticsTab'));
 export const App = () => {
   const dispatch = useDispatch();
@@ -57,12 +57,7 @@ export const App = () => {
       >
         <Route
           index
-          element={
-            <PrivateRoute>
-              -
-              <HomeTab />
-            </PrivateRoute>
-          }
+          element={<PrivateRoute>-{/* <HomeTab /> */}</PrivateRoute>}
         />
         <Route
           path="statistics"
