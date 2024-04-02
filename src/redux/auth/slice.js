@@ -11,7 +11,7 @@ import {
   addTransactionThunk,
   deleteTransactionThunk,
   updateTransactionThunk,
-} from 'redux/transactions/operations';
+} from '../transactions/operations';
 
 const initialState = {
   user: {
@@ -28,7 +28,7 @@ const initialState = {
 export const slice = createSlice({
   name: 'auth',
   initialState,
-  
+
   extraReducers: builder => {
     builder
       .addCase(logoutThunk.fulfilled, (state, { payload }) => {

@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { toast } from 'react-toastify';
 
-import { swaggerApi } from 'redux/auth/operations';
+import { swaggerApi } from '../auth/operations';
 
 export const fetchTransactionsThunk = createAsyncThunk(
   'fetchAll',

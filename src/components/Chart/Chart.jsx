@@ -3,7 +3,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import pngwing from '../../images/pngwing.webp';
 import { StyledChartP, StyledChartDiv } from './Chart.styled';
-import { selectPeriodTotal } from 'redux/transactions/selectors';
+import { selectPeriodTotal } from '../../redux/transactions/selectors';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 

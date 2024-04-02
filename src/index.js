@@ -11,6 +11,7 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from 'styles/theme';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider>
     <ThemeProvider theme={theme}>

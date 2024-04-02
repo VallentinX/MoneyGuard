@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux';
 import {
   selectExpenseSummary,
   selectIncomeSummary,
-} from 'redux/transactions/selectors';
+} from '../../redux/transactions/selectors';
 import PropTypes from 'prop-types';
 
 const StatisticsTable = ({ categories, dataDoughnut }) => {
