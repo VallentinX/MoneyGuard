@@ -24,48 +24,48 @@ const StatisticsTab = () => {
     }
     return '';
   });
-  const dataDoughnut = {
-    labels: [],
-    datasets: [
-      {
-        data: [...categoriesValue],
-        backgroundColor: [
-          '#00ff3c',
-          '#FED057',
-          '#006825',
+  // const dataDoughnut = {
+  //   labels: [],
+  //   datasets: [
+  //     {
+  //       data: [...categoriesValue],
+  //       backgroundColor: [
+  //         '#00ff3c',
+  //         '#FED057',
+  //         '#006825',
 
-          '#FFD8D0',
-          '#4A56E2',
-          '#ffff00',
-          '#6E78E8',
-          '#81E1FF',
-          '#C5BAFF',
+  //         '#FFD8D0',
+  //         '#4A56E2',
+  //         '#ffff00',
+  //         '#6E78E8',
+  //         '#81E1FF',
+  //         '#C5BAFF',
 
-          '#e0661b',
+  //         '#e0661b',
 
-          '#FD9498',
-        ],
-        borderColor: [
-          '#018f6e93',
-          '#c5a04478',
-          '#198d7389',
+  //         '#FD9498',
+  //       ],
+  //       borderColor: [
+  //         '#018f6e93',
+  //         '#c5a04478',
+  //         '#198d7389',
 
-          '#b79993a2',
-          '#333c9c8d',
-          '#18876f94',
-          '#4d54a39c',
-          '#5695a98f',
-          '#877fb09d',
+  //         '#b79993a2',
+  //         '#333c9c8d',
+  //         '#18876f94',
+  //         '#4d54a39c',
+  //         '#5695a98f',
+  //         '#877fb09d',
 
-          '#40a8929e',
+  //         '#40a8929e',
 
-          '#b7696ca4',
-        ],
-        borderWidth: 1,
-        cutout: '70%',
-      },
-    ],
-  };
+  //         '#b7696ca4',
+  //       ],
+  //       borderWidth: 1,
+  //       cutout: '70%',
+  //     },
+  //   ],
+  // };
 
   return (
     <StyledStatisticDivMain>
