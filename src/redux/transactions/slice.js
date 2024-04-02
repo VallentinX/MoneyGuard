@@ -35,7 +35,7 @@ const initialState = {
 export const slice = createSlice({
   name: 'transactions',
   initialState,
-
+  
   extraReducers: builder => {
     builder
       .addCase(fetchTransactionsThunk.fulfilled, (state, { payload }) => {

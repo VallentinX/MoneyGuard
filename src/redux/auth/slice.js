@@ -1,10 +1,12 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+
 import {
   loginThunk,
   logoutThunk,
   refreshThunk,
   registerThunk,
 } from './operations';
+
 import {
   addTransactionThunk,
   deleteTransactionThunk,
@@ -26,7 +28,7 @@ const initialState = {
 export const slice = createSlice({
   name: 'auth',
   initialState,
-
+  
   extraReducers: builder => {
     builder
       .addCase(logoutThunk.fulfilled, (state, { payload }) => {

@@ -31,6 +31,7 @@ export const store = configureStore({
     transactions: transactionReducer,
     auth: persistedReducer,
   },
+
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
