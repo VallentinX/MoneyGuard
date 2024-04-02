@@ -6,7 +6,7 @@ import { refreshThunk } from '../redux/auth/operations.js';
 import PrivateRoute from 'routes/PrivateRoute';
 import Loader from './Loader/Loader';
 import MediaRoutes from 'routes/MediaRoutes';
-import selectIsRefresh from '../redux/auth/selectors.js';
+import { selectIsRefresh } from '../redux/auth/selectors.js';
 
 // lazy loading
 // const LoginPage = lazy(() => import('pages/LoginPage/LoginPage'));
