@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from "react";
 import {
   AccountName,
   DividerImg,
@@ -17,33 +17,33 @@ import {
   CancelButtonStyle,
   LogoutLogoBox,
   StyledHeaderContainer,
-} from './Header.styled';
-import logoMoneyGuard from '../../images/logo_money_guard.svg';
-import exitIcon from '../../images/exit.svg';
-import dividerIcon from '../../images/straight_line.svg';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectUser } from 'redux/auth/selectors';
-import { useMediaQuery } from 'react-responsive';
-import { logoutThunk } from 'redux/auth/operations';
-import { Link } from 'react-router-dom';
+} from "./Header.styled";
+import logoMoneyGuard from "../../images/logo_money_guard.svg";
+import exitIcon from "../../images/exit.svg";
+import dividerIcon from "../../images/straight_line.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUser } from "../../redux/auth/selectors";
+import { useMediaQuery } from "react-responsive";
+import { logoutThunk } from "../../redux/auth/operations";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const dispatch = useDispatch();
   const isDesktopOrLaptop = useMediaQuery({
-    query: '(min-width: 768px)',
+    query: "(min-width: 768px)",
   });
 
   const userData = useSelector(selectUser);
-  const email = userData?.username || 'name.surname';
-  const index = email.indexOf('@');
+  const email = userData?.username || "name.surname";
+  const index = email.indexOf("@");
   const nameFromEmail = email.slice(0, index);
   const [showLogoutConfirmation, setShowLogoutConfirmation] = useState(false);
   const disableBodyScroll = () => {
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
   };
 
   const enableBodyScroll = useCallback(() => {
-    document.body.style.overflow = 'auto';
+    document.body.style.overflow = "auto";
   }, []);
 
   const handleCancel = () => {
@@ -51,8 +51,8 @@ const Header = () => {
     enableBodyScroll();
   };
   const handleEscapeKey = useCallback(
-    e => {
-      if (e.key === 'Escape') {
+    (e) => {
+      if (e.key === "Escape") {
         setShowLogoutConfirmation(false);
         enableBodyScroll();
       }
@@ -63,19 +63,19 @@ const Header = () => {
   const handleLogout = () => {
     setShowLogoutConfirmation(true);
     disableBodyScroll();
-    document.addEventListener('keydown', handleEscapeKey);
+    document.addEventListener("keydown", handleEscapeKey);
   };
 
   const confirmLogout = () => {
     dispatch(logoutThunk());
     setShowLogoutConfirmation(false);
     enableBodyScroll();
-    document.removeEventListener('keydown', handleEscapeKey);
+    document.removeEventListener("keydown", handleEscapeKey);
   };
 
   useEffect(() => {
     return () => {
-      document.removeEventListener('keydown', handleEscapeKey);
+      document.removeEventListener("keydown", handleEscapeKey);
     };
   }, [handleEscapeKey]);
 
