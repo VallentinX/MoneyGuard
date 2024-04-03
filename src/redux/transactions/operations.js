@@ -1,9 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+
 import { toast } from 'react-toastify';
+
 import { swaggerApi } from '../auth/operations';
 
 export const fetchTransactionsThunk = createAsyncThunk(
   'fetchAll',
+
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await swaggerApi.get('transactions');
@@ -40,7 +43,6 @@ export const deleteTransactionThunk = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       await swaggerApi.delete(`transactions/${id}`);
-
       const { data } = await swaggerApi.get('/users/current');
       const newData = { data, id };
 
@@ -64,14 +66,12 @@ export const updateTransactionThunk = createAsyncThunk(
       amount: body.amount,
       categoryId: body.categoryId,
     };
-
     try {
       const { data } = await swaggerApi.patch(
         `transactions/${body.id}`,
         newBody
       );
       const { data: freshData } = await swaggerApi.get('/users/current');
-
       toast.success('Edit completed!');
 
       const newData = { data, freshData };
@@ -99,7 +99,6 @@ export const fetchTransactionCategory = createAsyncThunk(
 
 export const fetchTransactionsSummary = createAsyncThunk(
   'transactionsSummary',
-
   async ({ month, year }, { rejectWithValue }) => {
     try {
       const { data } = await swaggerApi.get(

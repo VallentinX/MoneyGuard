@@ -30,7 +30,6 @@ export const selectFIltered = (state, sortCriteria) => {
 
         return sortCriteria.isReverse ? dateA - dateB : dateB - dateA;
       });
-
       break;
     case 'amount':
       sortedTransactions.sort((a, b) => {
@@ -38,13 +37,11 @@ export const selectFIltered = (state, sortCriteria) => {
           ? b.amount - a.amount
           : a.amount - b.amount;
       });
-
       break;
     case 'category':
       sortedTransactions.sort((a, b) => {
         const categoryA =
           categories.find(cat => cat.id === a.categoryId)?.name || '';
-
         const categoryB =
           categories.find(cat => cat.id === b.categoryId)?.name || '';
 
@@ -52,7 +49,6 @@ export const selectFIltered = (state, sortCriteria) => {
           ? categoryB.localeCompare(categoryA)
           : categoryA.localeCompare(categoryB);
       });
-
       break;
     default:
       return sortedTransactions.sort(
