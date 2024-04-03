@@ -34,12 +34,10 @@ const Header = () => {
   });
 
   const userData = useSelector(selectUser);
-  const email = userData?.email || 'name.surname';
+  const email = userData?.username || 'name.surname';
   const index = email.indexOf('@');
   const nameFromEmail = email.slice(0, index);
-
   const [showLogoutConfirmation, setShowLogoutConfirmation] = useState(false);
-
   const disableBodyScroll = () => {
     document.body.style.overflow = 'hidden';
   };
