@@ -1,12 +1,27 @@
-// import { Route, Routes } from 'react-router-dom';
-// import { useDispatch, useSelector } from 'react-redux';
+import Modal from './ModalTransaction/ModalTransaction';
+import UseModal from '../hooks/UseModal';
 
-import ModalTransaction from './ModalTransaction/ModalTransaction.jsx';
+import AddTransactionForm from 'components/AddTransactionForm/AddTransactionForm';
+// import EditTransactionForm from 'components/EditTransactionForm/EditTransactionForm';
 
-const App = function () {
+export const App = () => {
+  const { close, isOpen, data } = UseModal();
+  // const transactionType = 'INCOME' || 'EXPANSE';
   return (
     <>
-      <ModalTransaction />
+      {/* ButtonAddTransactions */}
+      {true && (
+        <Modal close={close}>
+          <AddTransactionForm transaction={data} close={close} />
+        </Modal>
+      )}
+
+      {/* TransactionsItem */}
+      {/* {isOpen && (
+        <Modal close={close}>
+          <EditTransactionForm transaction={transactionType} close={close} />
+        </Modal>
+      )} */}
     </>
   );
 };

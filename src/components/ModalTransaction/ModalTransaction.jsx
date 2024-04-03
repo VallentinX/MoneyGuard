@@ -1,88 +1,71 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
-import style from './Modal.module.css';
+import {
+  ModalWindowStyle,
+  OverlayStyle,
+  ButtonCloseStyle,
+  CancelBtnStyle,
+} from './ModalTransaction.style';
 
-import AddTransactionForm from '../AddTransactionForm/AddTransactionForm';
-// import EditTransactionForm from '../EditTransactionForm/EditTransactionForm';
+import PropTypes from 'prop-types';
 
-const Modal = function () {
-  const [inputValue, setInputValue] = useState('income');
-
-  const handleCheckboxChange = event => {
-    setInputValue(event.target.checked ? 'expense' : 'income');
-  };
-
-  const handleCancelClick = () => {
-    document.querySelector(`.${style.overlay}`).classList.add(style.hidden);
-  };
-
+const ModalTransaction = function ({ children, showCloseIcon = true, close }) {
   useEffect(() => {
-    const handleEscape = event => {
-      if (event.keyCode === 27) {
-        document.querySelector(`.${style.overlay}`).classList.add(style.hidden);
+    const handleKeyDown = e => {
+      if (e.key === 'Escape') {
+        close();
       }
     };
 
-    const handleClickOutside = event => {
-      if (!event.target.closest(`.${style.container}`)) {
-        document.querySelector(`.${style.overlay}`).classList.add(style.hidden);
-      }
-    };
-
-    document.addEventListener('keydown', handleEscape);
-    document.addEventListener('click', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      document.removeEventListener('keydown', handleEscape);
-      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  }, [close]);
+
+  const handleBackdropClick = e => {
+    if (e.currentTarget === e.target) {
+      close();
+    }
+  };
+
+  const closeClick = e => {
+    if (e.target.name === 'cancel' || e.currentTarget.name === 'closeSvg') {
+      close();
+    }
+  };
 
   return (
-    <>
-      <div className={`${style.overlay} ${style.hiddens}`}>
-        <div className={style.container}>
-          <h3 className={style.title}>Add transaction</h3>
-          <div className={style.transactionFlow}>
-            <span
-              className={
-                inputValue === 'income'
-                  ? style.spanLabelIncome
-                  : style.spanLabel
-              }
+    <OverlayStyle onClick={e => handleBackdropClick(e)}>
+      <ModalWindowStyle>
+        {showCloseIcon && (
+          <ButtonCloseStyle type="button" name="closeSvg" onClick={closeClick}>
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 18 18"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              Income
-            </span>
-            {false ? (
-              <span>/</span>
-            ) : (
-              <label className={style.switch}>
-                <input
-                  className={style.input}
-                  type="checkbox"
-                  onChange={handleCheckboxChange}
-                  value={inputValue}
-                />
-                <span className={`${style.slider} ${style.round}`}></span>
-              </label>
-            )}
-            <span
-              className={
-                inputValue === 'expense'
-                  ? style.spanLabelExpense
-                  : style.spanLabel
-              }
-            >
-              Expense
-            </span>
-          </div>
-          <AddTransactionForm pageView={inputValue} />
-
-          <button onClick={handleCancelClick}>Cancel</button>
-        </div>
-      </div>
-    </>
+              <path d="M1 1L17 17" stroke="#FBFBFB" />
+              <path d="M1 17L17 0.999999" stroke="#FBFBFB" />
+            </svg>
+          </ButtonCloseStyle>
+        )}
+        {children}
+        <CancelBtnStyle type="button" name="cancel" onClick={closeClick}>
+          Cancel
+        </CancelBtnStyle>
+      </ModalWindowStyle>
+    </OverlayStyle>
   );
 };
 
-export default Modal;
+ModalTransaction.propTypes = {
+  children: PropTypes.node,
+  showCloseIcon: PropTypes.bool,
+  close: PropTypes.func,
+};
+
+export default ModalTransaction;
