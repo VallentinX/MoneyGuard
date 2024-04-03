@@ -1,14 +1,23 @@
 {
   "files": {
-    "main.css": "/MoneyGuard/static/css/main.642dd155.css",
-    "main.js": "/MoneyGuard/static/js/main.7c550034.js",
-    "static/media/sprite.svg": "/MoneyGuard/static/media/sprite.07f6ba61a3295df6aefc677c52a3d6e1.svg",
+    "main.css": "/MoneyGuard/static/css/main.301db928.css",
+    "main.js": "/MoneyGuard/static/js/main.7bfa415f.js",
+    "static/media/Poppins-Regular.ttf": "/MoneyGuard/static/media/Poppins-Regular.35d26b781dc5fda684cc.ttf",
+    "static/media/Poppins-SemiBold.ttf": "/MoneyGuard/static/media/Poppins-SemiBold.ac8d04b620e54be9b0f0.ttf",
+    "static/media/Poppins-Bold.ttf": "/MoneyGuard/static/media/Poppins-Bold.cdb29a5d7ccf57ff05a3.ttf",
+    "static/media/desktop-regiter-bkg.webp": "/MoneyGuard/static/media/desktop-regiter-bkg.bcc8fbdd5891f99a5b26.webp",
+    "static/media/tablet-regiter-bkg.webp": "/MoneyGuard/static/media/tablet-regiter-bkg.26ec0e1c8612aec121d0.webp",
+    "static/media/desktop-login-bkg.webp": "/MoneyGuard/static/media/desktop-login-bkg.747b29205909b74382b4.webp",
+    "static/media/tablet-login-bkg.webp": "/MoneyGuard/static/media/tablet-login-bkg.ab18a063b82a9548ddfd.webp",
+    "static/media/mobile-login-bkg.webp": "/MoneyGuard/static/media/mobile-login-bkg.d23b0ea399498cd178ad.webp",
+    "static/media/mobile-regiter-bkg.webp": "/MoneyGuard/static/media/mobile-regiter-bkg.d23b0ea399498cd178ad.webp",
     "index.html": "/MoneyGuard/index.html",
-    "main.642dd155.css.map": "/MoneyGuard/static/css/main.642dd155.css.map",
-    "main.7c550034.js.map": "/MoneyGuard/static/js/main.7c550034.js.map"
+    "static/media/logo_money_guard.svg": "/MoneyGuard/static/media/logo_money_guard.fce5decc9b22ef0ca025e9630273e85c.svg",
+    "main.301db928.css.map": "/MoneyGuard/static/css/main.301db928.css.map",
+    "main.7bfa415f.js.map": "/MoneyGuard/static/js/main.7bfa415f.js.map"
   },
   "entrypoints": [
-    "static/css/main.642dd155.css",
-    "static/js/main.7c550034.js"
+    "static/css/main.301db928.css",
+    "static/js/main.7bfa415f.js"
   ]
 }
