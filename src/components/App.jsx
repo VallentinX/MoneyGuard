@@ -10,7 +10,7 @@ export const App = () => {
   return (
     <>
       {/* ButtonAddTransactions */}
-      {true && (
+      {isOpen && (
         <Modal close={close}>
           <AddTransactionForm transaction={data} close={close} />
         </Modal>
