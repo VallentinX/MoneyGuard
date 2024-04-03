@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 
 import {
-  ModalWindowStyle,
-  OverlayStyle,
   ButtonCloseStyle,
   CancelBtnStyle,
+  ModalWindowStyle,
+  OverlayStyle,
 } from './ModalTransaction.style';
 
 import PropTypes from 'prop-types';
