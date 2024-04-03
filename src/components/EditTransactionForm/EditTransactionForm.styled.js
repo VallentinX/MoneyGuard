@@ -5,6 +5,7 @@ import DatePicker from 'react-datepicker';
 export const StyledEditContainer = styled.div`
   padding: 20px;
 `;
+
 export const EditFormTitle = styled.h2`
   text-align: center;
   font-size: 24px;
@@ -15,6 +16,7 @@ export const EditFormTitle = styled.h2`
     font-size: 30px;
   }
 `;
+
 export const StyledlabelBox = styled.div`
   display: flex;
   justify-content: center;
@@ -33,6 +35,7 @@ export const StyledEditForm = styled(Form)`
   justify-content: center;
   width: 280px;
 `;
+
 export const CustomRadioLabel = styled.label`
   position: relative;
   font-size: 16px;
@@ -44,9 +47,9 @@ export const CustomRadioLabel = styled.label`
       (selected === 'INCOME' && value === 'INCOME') ||
       (selected === 'EXPENSE' && value === 'EXPENSE')
     ) {
-      return value === 'INCOME' ? '#ffb627' : '#ff868d';
+      return value === 'INCOME' ? '#FFB627' : '#FF868D';
     } else {
-      return '#e0e0e0';
+      return '#E0E0E0';
     }
   }};
 
@@ -54,9 +57,11 @@ export const CustomRadioLabel = styled.label`
     font-weight: 700;
   }
 `;
+
 export const CustomRadioInput = styled.input`
   display: none;
 `;
+
 export const StyledAmounDateEdit = styled.div`
   position: relative;
   display: flex;
@@ -78,6 +83,7 @@ export const StyledEditAmount = styled(Field)`
   width: 280px;
   margin-bottom: 40px;
   outline: none;
+
   border: none;
   background: transparent;
   color: ${({ theme }) => theme.colors.mainWhite};
@@ -100,10 +106,12 @@ export const StyledReqField = styled.span`
     right: 210px;
   }
 `;
+
 export const StyledReqCommentField = styled.span`
   font-size: 14px;
   color: ${({ theme }) => theme.colors.expenseColor};
 `;
+
 export const StyledEditField = styled(Field)`
   font-size: 18px;
   font-weight: 400;
@@ -121,6 +129,7 @@ export const StyledEditField = styled(Field)`
     padding: 0 8px 8px 8px;
   }
 `;
+
 export const StyledEditDatePicker = styled(DatePicker)`
   width: 280px;
   font-size: 18px;
@@ -128,6 +137,7 @@ export const StyledEditDatePicker = styled(DatePicker)`
   line-height: normal;
   margin-bottom: 20px;
   outline: none;
+
   background: transparent;
   border: none;
   border-bottom: ${({ theme }) => theme.border.borderBottom};
@@ -141,6 +151,7 @@ export const StyledEditDatePicker = styled(DatePicker)`
     width: 180px;
   }
 `;
+
 export const StyledIconCalendar = styled.svg`
   cursor: pointer;
 `;
@@ -203,11 +214,13 @@ export const StyledWrapper = styled.div`
     background-color: ${({ theme }) => theme.backgrounds.active};
   }
 `;
+
 export const EditBtnBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
 `;
+
 export const BtnSave = styled.button`
   font-size: 18px;
   letter-spacing: 0.1em;
@@ -220,6 +233,7 @@ export const BtnSave = styled.button`
   color: ${({ theme }) => theme.colors.mainWhite};
   background: ${({ theme }) => theme.backgrounds.btnGradient};
 `;
+
 export const EditBtnCancel = styled.button`
   font-size: 18px;
   letter-spacing: 0.1em;

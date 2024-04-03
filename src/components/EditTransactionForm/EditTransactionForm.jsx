@@ -1,92 +1,183 @@
-import React from 'react';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
-import style from './AddTransactionForm.module.css';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { Formik } from 'formik';
 
-const AddTransactionForm = ({ pageView }) => {
-  const initialValues = {
-    amount: '',
-    selectedDate: '',
-    comment: '',
-    category: '',
-  };
+import React, { useState } from 'react';
 
-  const validationSchema = Yup.object().shape({
-    amount: Yup.number().required('Amount is required'),
-    selectedDate: Yup.date().required('Date is required'),
-    category: Yup.string().required('Category is required'),
+import { useDispatch } from 'react-redux';
+
+import { updateTransactionThunk } from '../../redux/transactions/operations';
+
+import sprite from '../../images/sprite.svg';
+
+import { object, string } from 'yup';
+
+import {
+  BtnSave,
+  CustomRadioInput,
+  CustomRadioLabel,
+  EditBtnBox,
+  EditFormTitle,
+  StyledAmounDateEdit,
+  StyledEditAmount,
+  StyledEditContainer,
+  StyledEditDatePicker,
+  StyledEditField,
+  StyledEditForm,
+  StyledIconCalendar,
+  StyledReqField,
+  StyledWrapper,
+  StyledlabelBox,
+} from './EditTransactionForm.styled';
+
+import PropTypes from 'prop-types';
+
+const handleNumberInput = e => {
+  const inputValue = e.target.value;
+  const newValue = inputValue.replace(/[-+eE]/g, '');
+
+  e.target.value = newValue;
+};
+
+const EditTransactionForm = ({ transaction, close }) => {
+  const dispatch = useDispatch();
+  const [startDate, setStartDate] = useState();
+  const [selectedType, setSelectedType] = useState(transaction.type);
+
+  const AddSchema = object({
+    amount: string().required().min(1, 'Too Short!').max(12, 'Too Long!'),
+    comment: string().max(50, 'Too Long!'),
+    type: string().oneOf(['INCOME', 'EXPENSE'], 'Invalid transaction type'),
   });
 
-  const handleSubmit = (values, { setSubmitting, resetForm }) => {
-    setTimeout(() => {
-      if (values.amount === '1000') {
-        toast.error('Error: Backend returned an error message');
-      } else {
-        toast.success('Transaction submitted successfully');
-        resetForm();
-      }
-      setSubmitting(false);
-    }, 1000);
+  const handleSubmit = values => {
+    const EditData = {
+      id: transaction.id,
+      amount:
+        values.type === 'EXPENSE'
+          ? -Math.abs(values.amount)
+          : Math.abs(values.amount),
+      transactionDate: values.transactionDate,
+      type: values.type,
+      comment: values.comment,
+      categoryId: transaction.categoryId,
+    };
+
+    dispatch(updateTransactionThunk(EditData));
+    close();
   };
 
   return (
-    <div className={style.container}>
-      <ToastContainer position="top-center" />
+    <div>
+      <StyledEditContainer>
+        <EditFormTitle>Edit transaction</EditFormTitle>
 
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      >
-        {({ isSubmitting }) => (
-          <Form>
-            {pageView === 'expense' && (
-              <Field as="select" name="category">
-                <option value="">Select category...</option>
-                <option value="Main expenses">Main expenses</option>
-                <option value="Products">Products</option>
-                <option value="Car">Car</option>
-                <option value="Self care">Self care</option>
-                <option value="Child care">Child care</option>
-                <option value="Household products">Household products</option>
-                <option value="Education">Education</option>
-                <option value="Leisure">Leisure</option>
-                <option value="Other expenses">Other expenses</option>
-                <option value="Entertainment">Entertainment</option>
-              </Field>
-            )}
-
-            <Field
-              type="number"
-              name="amount"
-              placeholder="Enter amount"
-              inputMode="numeric"
-            />
-            <ErrorMessage
-              name="amount"
-              component="div"
-              className={style.error}
-            />
-
-            <Field type="date" name="selectedDate" />
-            <ErrorMessage
-              name="selectedDate"
-              component="div"
-              className={style.error}
-            />
-
-            <Field type="text" name="comment" placeholder="Add a comment" />
-
-            <button type="submit" disabled={isSubmitting}>
-              Add
-            </button>
-          </Form>
-        )}
-      </Formik>
+        <Formik
+          initialValues={{
+            id: transaction.id,
+            amount: transaction.amount,
+            transactionDate: new Date(Date.parse(transaction.transactionDate)),
+            comment: transaction.comment,
+            type: transaction.type,
+          }}
+          validationSchema={AddSchema}
+          onSubmit={handleSubmit}
+        >
+          {({ errors, touched, values, handleChange, setFieldValue }) => (
+            <StyledEditForm autoComplete="off">
+              <StyledlabelBox>
+                <CustomRadioLabel value="INCOME" selected={selectedType}>
+                  <CustomRadioInput
+                    type="radio"
+                    name="type"
+                    value="INCOME"
+                    disabled={values.type === 'EXPENSE' ? true : false}
+                    checked={values.type === 'INCOME'}
+                    onChange={() => {
+                      setFieldValue('type', 'INCOME');
+                      setSelectedType('INCOME');
+                    }}
+                  />
+                  Income
+                </CustomRadioLabel>
+                <span>/</span>
+                <CustomRadioLabel value="EXPENSE" selected={selectedType}>
+                  <CustomRadioInput
+                    type="radio"
+                    name="type"
+                    disabled={values.type === 'INCOME' ? true : false}
+                    value="EXPENSE"
+                    checked={values.type === 'EXPENSE'}
+                    onChange={() => {
+                      setFieldValue('type', 'EXPENSE');
+                      setSelectedType('EXPENSE');
+                    }}
+                  />
+                  Expense
+                </CustomRadioLabel>
+              </StyledlabelBox>
+              <StyledAmounDateEdit>
+                <div>
+                  <StyledEditAmount
+                    name="amount"
+                    type="number"
+                    onInput={handleNumberInput}
+                    value={values.amount.toString().replace('-', '')}
+                    placeholder="0.0"
+                  />
+                  {errors.amount && touched.amount ? (
+                    <StyledReqField>{errors.amount}</StyledReqField>
+                  ) : null}
+                </div>
+                <StyledWrapper>
+                  <label>
+                    <StyledEditDatePicker
+                      name="transactionDate"
+                      value={values.transactionDate}
+                      onChange={date => {
+                        handleChange({
+                          target: {
+                            name: 'transactionDate',
+                            value: date,
+                          },
+                        });
+                        setStartDate(date);
+                      }}
+                      dateFormat="dd.MM.yyyy"
+                      placeholderText={`${values.transactionDate.toLocaleDateString(
+                        'uk-UA'
+                      )}`}
+                      showIcon
+                      selected={startDate}
+                      maxDate={new Date()}
+                      style={{ float: 'left' }}
+                      icon={
+                        <StyledIconCalendar width="24" height="24">
+                          <use href={`${sprite}#calendar`} />
+                        </StyledIconCalendar>
+                      }
+                    />
+                  </label>
+                </StyledWrapper>
+              </StyledAmounDateEdit>
+              <StyledEditField
+                name="comment"
+                type="text"
+                value={values.comment}
+                placeholder="Comment"
+              />
+              <EditBtnBox>
+                <BtnSave type="submit">Save</BtnSave>
+              </EditBtnBox>
+            </StyledEditForm>
+          )}
+        </Formik>
+      </StyledEditContainer>
     </div>
   );
 };
 
-export default AddTransactionForm;
+EditTransactionForm.propTypes = {
+  transaction: PropTypes.object,
+  close: PropTypes.func,
+};
+
+export default EditTransactionForm;
