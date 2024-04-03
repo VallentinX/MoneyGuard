@@ -1,9 +1,14 @@
-import Modal from './Modal/Modal.jsx';
+// import { Route, Routes } from 'react-router-dom';
+// import { useDispatch, useSelector } from 'react-redux';
 
-export const App = () => {
+import ModalTransaction from './ModalTransaction/ModalTransaction.jsx';
+
+const App = function () {
   return (
     <>
-      <Modal />
+      <ModalTransaction />
     </>
   );
 };
+
+export default App;

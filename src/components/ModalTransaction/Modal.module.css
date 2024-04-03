@@ -6,12 +6,13 @@
   width: 100%;
   height: 100vh;
   background-color: transparent;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+  padding-top: 60px;
   /* remove  background linear-gradient */
   background: linear-gradient(to bottom right, #6d54eb 30%, #6d1c77dd 66%);
+}
+.hidden {
+  display: none;
 }
 .container {
   /* Background: glass; */
@@ -22,6 +23,7 @@
   -webkit-backdrop-filter: blur(8.4px);
   width: 320px;
   height: 600px;
+  margin: 0 auto;
 }
 .title {
   font-weight: 400;
@@ -31,15 +33,39 @@
   color: #fbfbfb;
   margin: 25px;
 }
+.spanLabel {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: right;
+  color: #ffffff99;
+}
+.spanLabelIncome {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: right;
+  color: #ffb627;
+}
+.spanLabelExpense {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: right;
+  color: #ff868d;
+}
 .transactionFlow {
   width: 100%;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
 }
 .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: 70px;
+  height: 40px;
 }
 .input {
   opacity: 0;
@@ -53,36 +79,45 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: #fff;
   -webkit-transition: 350ms ease-in-out;
   transition: 350ms ease-in-out;
 }
 .slider::before {
   position: absolute;
-  content: '';
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
+  content: '+';
+  height: 40px;
+  width: 40px;
+  left: 0px;
+  bottom: 0px;
+  background-color: #ffb627;
   -webkit-transition: 350ms ease-in-out;
   transition: 350ms ease-in-out;
+  color: #fff;
+  font-size: 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.input[value='expense']:checked + .slider::before {
+  content: '−';
+  background-color: #ff868d;
 }
 .input:checked + .slider {
-  background-color: #2196f3;
+  background-color: #fff;
 }
 .input:focus + .slider {
-  box-shadow: 0 0 1px #2196f3;
+  box-shadow: 0 0 1px #fff;
 }
 .input:checked + .slider::before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
+  -webkit-transform: translateX(36px);
+  -ms-transform: translateX(36px);
+  transform: translateX(36px);
 }
 .round {
   border-radius: 34px;
 }
-
 .round:before {
   border-radius: 50%;
 }
