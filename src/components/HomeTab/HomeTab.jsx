@@ -5,6 +5,7 @@ import tabletBg from '../../images/home-tab/tablet/tablet-bg.png';
 import desktopBg from '../../images/home-tab/desktop/desktop-bg.png';
 import { CustomScroll } from 'react-custom-scroll';
 import { useMediaQuery } from 'react-responsive';
+import ButtonAddTransactions from './components/ButtonAddTransactions';
 
 const Section = styled.section``;
 
@@ -47,6 +48,7 @@ const HomeTab = () => {
         <StyledScrollbar>
           <ScrollableContent>
             <TransactionsList />
+            <ButtonAddTransactions />
           </ScrollableContent>
         </StyledScrollbar>
       </FixedContent>

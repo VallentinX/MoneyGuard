@@ -1,9 +1,9 @@
-import Modal from './Modal/Modal.jsx';
+import HomeTab from './HomeTab/HomeTab';
 
 export const App = () => {
   return (
     <>
-      <Modal />
+      <HomeTab />
     </>
   );
 };

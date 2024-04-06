@@ -2,7 +2,6 @@ import { getTransactions } from 'components/redux/selectors';
 import TransactionsItem from './components/TransactionsItem';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import icons from '../../../images/home-tab/mobile/icons.svg';
 import { useEffect } from 'react';
 import { requestTransactions } from 'components/redux/operations';
 import { useMediaQuery } from 'react-responsive';
@@ -29,11 +28,6 @@ const ItemList = styled.ul`
   list-style: none;
   margin: 0;
   gap: 8px;
-`;
-
-const AddIcon = styled.svg`
-  width: 20px;
-  height: 20px;
 `;
 
 const TableHeader = styled.ul`
@@ -74,22 +68,6 @@ const Column = styled.li`
 const TransactionsList = () => {
   const isMobileView = useMediaQuery({ maxWidth: 767 });
   const isTabletView = useMediaQuery({ maxWidth: 1279 });
-
-  const AddButton = styled.button`
-    border: none;
-    background-image: linear-gradient(to right, #ffc727, #9e40ba);
-    color: white;
-    position: absolute;
-    bottom: ${isMobileView ? '20px' : '40px'};
-    right: ${isMobileView ? '20px' : '40px'};
-    width: 44px;
-    height: 44px;
-    border-radius: 22px;
-    box-shadow: 1px 9px 15px 0 rgba(0, 0, 0, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  `;
 
   const Table = styled.div`
     margin: ${isMobileView && '0 20px'};
@@ -154,11 +132,6 @@ const TransactionsList = () => {
           </ItemList>
         </Table>
       )}
-      <AddButton>
-        <AddIcon>
-          <use href={`${icons}#addIcon`} />
-        </AddIcon>
-      </AddButton>
     </>
   );
 };
