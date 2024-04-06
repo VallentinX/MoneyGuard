@@ -1,11 +1,11 @@
-import TransactionsList from './components/TransactionsList';
-import styled from 'styled-components';
-import mobileBg from '../../images/home-tab/mobile/mobile-bg.png';
-import tabletBg from '../../images/home-tab/tablet/tablet-bg.png';
-import desktopBg from '../../images/home-tab/desktop/desktop-bg.png';
-import { CustomScroll } from 'react-custom-scroll';
-import { useMediaQuery } from 'react-responsive';
-import ButtonAddTransactions from './components/ButtonAddTransactions';
+import TransactionsList from "../TransactionsList/TransactionsList";
+import styled from "styled-components";
+import mobileBg from "../../images/home-tab/mobile/mobile-bg.png";
+import tabletBg from "../../images/home-tab/tablet/tablet-bg.png";
+import desktopBg from "../../images/home-tab/desktop/desktop-bg.png";
+import { CustomScroll } from "react-custom-scroll";
+import { useMediaQuery } from "react-responsive";
+import ButtonAddTransactions from "../ButtonAddTransactions/ButtonAddTransactions";
 
 const Section = styled.section``;
 
@@ -39,7 +39,7 @@ const HomeTab = () => {
     height: 100vh;
     width: 100%;
     display: flex;
-    justify-content: ${!isTabletView ? 'end' : 'center'};
+    justify-content: ${!isTabletView ? "end" : "center"};
   `;
 
   return (

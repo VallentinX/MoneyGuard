@@ -1,10 +1,13 @@
-import { getTransactions } from 'components/redux/selectors';
-import TransactionsItem from './components/TransactionsItem';
-import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components';
-import { useEffect } from 'react';
-import { requestTransactions } from 'components/redux/operations';
-import { useMediaQuery } from 'react-responsive';
+import { selectTransactions } from "../../redux/transactions/selectors";
+import TransactionsItem from "../TransactionsItem/TransactionsItem";
+import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components";
+import { useEffect } from "react";
+import {
+  fetchTransactionsThunk,
+  fetchTransactionCategory,
+} from "../../redux/transactions/operations";
+import { useMediaQuery } from "react-responsive";
 
 const MessageContainer = styled.div`
   display: flex;
@@ -32,33 +35,36 @@ const ItemList = styled.ul`
 
 const TableHeader = styled.ul`
   display: flex;
-  padding: 16px 20px;
+  padding: 16px 0 16px 20px;
+  width: 100%;
+  justify-content: space-between;
   background-color: rgba(82, 59, 126, 0.6);
   list-style: none;
   margin: 0;
   border-radius: 8px;
   box-sizing: border-box;
   gap: 48px;
+  padding-right: 22%;
 `;
 
 const Column = styled.li`
-  font-family: 'Poppins';
+  font-family: "Poppins";
   font-weight: 600;
   line-height: 24px;
   color: white;
-  text-align: ${props => (props.type === 'sum' ? 'right' : 'left')};
-  width: ${props => {
+  text-align: ${(props) => (props.type === "sum" ? "right" : "left")};
+  width: ${(props) => {
     switch (props.type) {
-      case 'date':
-        return '50px';
-      case 'type':
-        return '40px';
-      case 'category':
-        return '91px';
-      case 'comment':
-        return '108px';
-      case 'sum':
-        return '62px';
+      case "date":
+        return "50px";
+      case "type":
+        return "40px";
+      case "category":
+        return "91px";
+      case "comment":
+        return "108px";
+      case "sum":
+        return "62px";
       default:
         break;
     }
@@ -70,20 +76,20 @@ const TransactionsList = () => {
   const isTabletView = useMediaQuery({ maxWidth: 1279 });
 
   const Table = styled.div`
-    margin: ${isMobileView && '0 20px'};
-    margin: ${isTabletView ? '0 32px' : '0 16px 0 69px'};
-    margin-top: ${isTabletView ? '20px' : '46px'};
+    margin: ${isMobileView && "0 20px"};
+    margin-top: ${isTabletView ? "20px" : "46px"};
     display: flex;
     flex-direction: column;
   `;
 
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(requestTransactions());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchTransactionsThunk());
+    dispatch(fetchTransactionCategory());
+  }, [dispatch]);
 
-  const { list, isLoading, error } = useSelector(getTransactions);
+  const { items, isLoading, error } = useSelector(selectTransactions);
 
   if (isLoading) {
     return (
@@ -101,7 +107,7 @@ const TransactionsList = () => {
     );
   }
 
-  if (list.length === 0) {
+  if (items?.length === 0) {
     return (
       <MessageContainer>
         <Message>There are no transactions available</Message>
@@ -111,7 +117,7 @@ const TransactionsList = () => {
 
   return (
     <>
-      {list.length > 0 && (
+      {items.length > 0 && (
         <Table>
           {!isMobileView && (
             <TableHeader>
@@ -123,7 +129,7 @@ const TransactionsList = () => {
             </TableHeader>
           )}
           <ItemList>
-            {list.map(transaction => (
+            {items.map((transaction) => (
               <TransactionsItem
                 transaction={transaction}
                 key={transaction.id}

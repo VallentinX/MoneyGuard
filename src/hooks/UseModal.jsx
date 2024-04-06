@@ -26,7 +26,7 @@ import { useEffect, useState } from "react";
 
 // export default UseModal;
 
-const useModal = () => {
+const UseModal = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState(null);
 
@@ -51,3 +51,5 @@ const useModal = () => {
 
   return { isOpen, close, open, toggle, data };
 };
+
+export default UseModal;

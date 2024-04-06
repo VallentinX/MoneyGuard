@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StyledTableWrapper = styled.div`
   position: relative;
@@ -24,7 +24,7 @@ export const StyledGraphWrapper = styled.div`
 
   top: -6px;
   &::before {
-    content: '';
+    content: "";
     display: inline-block;
     position: absolute;
     width: 6px;
@@ -34,11 +34,10 @@ export const StyledGraphWrapper = styled.div`
     border: solid 1px #ff868d;
     left: 39px;
     top: 21px;
-    z-index: 1000;
   }
 
   &::after {
-    content: '';
+    content: "";
     display: inline-block;
     position: absolute;
     width: 6px;
@@ -48,7 +47,6 @@ export const StyledGraphWrapper = styled.div`
     border: solid 1px #ff868d;
     left: 242px;
     top: -2px;
-    z-index: 1000;
   }
   @media only screen and (min-width: 768px) {
     &::before {
