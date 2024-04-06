@@ -1,7 +1,7 @@
-import styled, { createGlobalStyle } from 'styled-components';
-import fontRegular from '../fonts/Poppins-Regular.ttf';
-import fontBold from '../fonts/Poppins-Bold.ttf';
-import fontSemiBold from '../fonts/Poppins-SemiBold.ttf';
+import styled, { createGlobalStyle } from "styled-components";
+import fontRegular from "../fonts/Poppins-Regular.ttf";
+import fontBold from "../fonts/Poppins-Bold.ttf";
+import fontSemiBold from "../fonts/Poppins-SemiBold.ttf";
 
 export const GlobalStyles = createGlobalStyle`
  
@@ -88,7 +88,7 @@ export const StyledContainer = styled.div`
   }
   @media only screen and (max-width: 767px) {
     &::after {
-      content: '';
+      content: "";
       z-index: -1;
       width: 100%;
       height: 454px;
@@ -101,7 +101,7 @@ export const StyledContainer = styled.div`
     }
 
     &::before {
-      content: '';
+      content: "";
       width: 362px;
       height: 200px;
       border-radius: 362.381px;
@@ -115,7 +115,7 @@ export const StyledContainer = styled.div`
   }
   @media only screen and (min-width: 768px) {
     &::before {
-      content: '';
+      content: "";
       width: 90%;
       height: 201px;
       border-radius: 366.105px;

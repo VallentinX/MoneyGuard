@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { Form, Field } from 'formik';
-import DatePicker from 'react-datepicker';
+import styled from "styled-components";
+import { Form, Field } from "formik";
+import DatePicker from "react-datepicker";
 
 export const StyledEditContainer = styled.div`
   padding: 20px;
@@ -44,12 +44,12 @@ export const CustomRadioLabel = styled.label`
 
   color: ${({ value, selected }) => {
     if (
-      (selected === 'INCOME' && value === 'INCOME') ||
-      (selected === 'EXPENSE' && value === 'EXPENSE')
+      (selected === "INCOME" && value === "INCOME") ||
+      (selected === "EXPENSE" && value === "EXPENSE")
     ) {
-      return value === 'INCOME' ? '#FFB627' : '#FF868D';
+      return value === "INCOME" ? "#ffb627" : "#ff868d";
     } else {
-      return '#E0E0E0';
+      return "#e0e0e0";
     }
   }};
 

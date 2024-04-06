@@ -1,17 +1,12 @@
-import LoginForm from "../../components/LoginForm/LoginForm";
-import {
-  ContentContainer,
-  MainContainer,
-} from "../../components/LoginForm/LoginForm.styles";
+import LoginForm from "components/LoginForm/LoginForm";
+import React from "react";
 
-const Login = () => {
+const LoginPage = () => {
   return (
-    <MainContainer>
-      <ContentContainer>
-        <LoginForm />
-      </ContentContainer>
-    </MainContainer>
+    <div>
+      <LoginForm />
+    </div>
   );
 };
 
-export default Login;
+export default LoginPage;

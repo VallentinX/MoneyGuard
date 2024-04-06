@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
 import {
   AddFormTitle,
@@ -19,44 +19,44 @@ import {
   SwitcherRoundPlus,
   SwitcherSquare,
   styles,
-} from './AddTransactionForm.style';
+} from "./AddTransactionForm.style";
 
-import { Formik } from 'formik';
+import { Formik } from "formik";
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   addTransactionThunk,
   fetchTransactionCategory,
-} from '../../redux/transactions/operations';
+} from "../../redux/transactions/operations";
 
-import { object, string } from 'yup';
+import { object, string } from "yup";
 
-import 'react-datepicker/dist/react-datepicker.css';
+import "react-datepicker/dist/react-datepicker.css";
 
-import sprite from '../../images/sprite.svg';
+import sprite from "../../images/sprite.svg";
 
-import { selectAllCategories } from '../../redux/transactions/selectors';
+import { selectAllCategories } from "../../redux/transactions/selectors";
 
-import Select from 'react-select';
+import Select from "react-select";
 
-import { StyledIconCalendar } from 'components/EditTransactionForm/EditTransactionForm.styled';
+import { StyledIconCalendar } from "components/EditTransactionForm/EditTransactionForm.style";
 
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 const AddSchema = object({
   amount: string().required(),
 
-  comment: string().min(2, 'Too Short!').max(50, 'Too Long!'),
+  comment: string().min(2, "Too Short!").max(50, "Too Long!"),
 
   category: string(),
 });
 
-const handleNumberInput = e => {
+const handleNumberInput = (e) => {
   const inputValue = e.target.value;
-  const newValue = inputValue.replace(/[-+eE]/g, '');
+  const newValue = inputValue.replace(/[-+eE]/g, "");
 
   e.target.value = newValue;
 };
@@ -65,16 +65,16 @@ const AddTransactionForm = ({ close }) => {
   const dispatch = useDispatch();
 
   const [selectedCategory, setSelectedCategory] = useState({
-    value: 'Select a category',
-    label: 'Select a category',
+    value: "Select a category",
+    label: "Select a category",
   });
 
-  const [transactionType, setTransactionType] = useState('EXPENSE');
+  const [transactionType, setTransactionType] = useState("EXPENSE");
   const [isSwitcherRoundPlusVisible, setIsSwitcherRoundPlusVisible] =
     useState(false);
   const [isSwitcherRoundMinusVisible, setIsSwitcherRoundMinusVisible] =
     useState(true);
-  const onCategoryChange = category => {
+  const onCategoryChange = (category) => {
     setSelectedCategory(category);
   };
 
@@ -88,13 +88,13 @@ const AddTransactionForm = ({ close }) => {
 
   const handleSwitcherClick = (values, setFieldValue) => {
     const newTransactionType =
-      transactionType === 'EXPENSE' ? 'INCOME' : 'EXPENSE';
+      transactionType === "EXPENSE" ? "INCOME" : "EXPENSE";
 
-    setTransactionType(transactionType === 'EXPENSE' ? 'INCOME' : 'EXPENSE');
-    setFieldValue('type', newTransactionType);
+    setTransactionType(transactionType === "EXPENSE" ? "INCOME" : "EXPENSE");
+    setFieldValue("type", newTransactionType);
     setTransactionType(newTransactionType);
 
-    if (transactionType === 'EXPENSE') {
+    if (transactionType === "EXPENSE") {
       setIsSwitcherRoundPlusVisible(true);
       setIsSwitcherRoundMinusVisible(false);
     } else {
@@ -102,12 +102,12 @@ const AddTransactionForm = ({ close }) => {
       setIsSwitcherRoundMinusVisible(true);
     }
   };
-  const onClickTitle = str => {
-    if (str === 'INCOME') {
+  const onClickTitle = (str) => {
+    if (str === "INCOME") {
       setIsSwitcherRoundPlusVisible(true);
       setIsSwitcherRoundMinusVisible(false);
     }
-    if (str === 'EXPENSE') {
+    if (str === "EXPENSE") {
       setIsSwitcherRoundPlusVisible(false);
       setIsSwitcherRoundMinusVisible(true);
     }
@@ -116,13 +116,13 @@ const AddTransactionForm = ({ close }) => {
   const handleSubmit = (values, selectedCategory) => {
     const addFormData = {
       amount:
-        values.type === 'EXPENSE'
+        values.type === "EXPENSE"
           ? Number(-values.amount)
           : Number(values.amount),
       categoryId:
-        values.type === 'EXPENSE'
+        values.type === "EXPENSE"
           ? selectedCategory.id
-          : '063f1132-ba5d-42b4-951d-44011ca46262',
+          : "063f1132-ba5d-42b4-951d-44011ca46262",
       comment: values.comment,
       transactionDate: values.transactionDate,
       type: values.type,
@@ -136,7 +136,7 @@ const AddTransactionForm = ({ close }) => {
       })
       .catch(() => {
         toast.error(
-          'Something went wrong, enter amount or choose a category!🤷‍♀️'
+          "Something went wrong, enter amount or choose a category!🤷‍♀️"
         );
       });
   };
@@ -148,11 +148,11 @@ const AddTransactionForm = ({ close }) => {
 
         <Formik
           initialValues={{
-            type: 'EXPENSE',
-            category: '',
-            amount: '',
+            type: "EXPENSE",
+            category: "",
+            amount: "",
             transactionDate: new Date(),
-            comment: '',
+            comment: "",
           }}
           validationSchema={AddSchema}
           onSubmit={(values, { setFieldValue }) =>
@@ -168,13 +168,13 @@ const AddTransactionForm = ({ close }) => {
                     type="radio"
                     name="type"
                     value="INCOME"
-                    checked={values.type === 'INCOME'}
+                    checked={values.type === "INCOME"}
                     onChange={handleChange}
-                    onClick={() => onClickTitle('INCOME')}
+                    onClick={() => onClickTitle("INCOME")}
                   />
                   <StyledTextSpan
                     style={{
-                      color: values.type === 'INCOME' ? '#FFB627' : '#ffffff99',
+                      color: values.type === "INCOME" ? "#ffb627" : "#ffffff99",
                     }}
                   >
                     Income
@@ -204,14 +204,14 @@ const AddTransactionForm = ({ close }) => {
                     type="radio"
                     name="type"
                     value="EXPENSE"
-                    checked={values.type === 'EXPENSE'}
+                    checked={values.type === "EXPENSE"}
                     onChange={handleChange}
-                    onClick={() => onClickTitle('EXPENSE')}
+                    onClick={() => onClickTitle("EXPENSE")}
                   />
                   <StyledTextSpan
                     style={{
                       color:
-                        values.type === 'EXPENSE' ? '#FF868D' : '#ffffff99',
+                        values.type === "EXPENSE" ? "#ff868d" : "#ffffff99",
                     }}
                   >
                     Expense
@@ -219,25 +219,25 @@ const AddTransactionForm = ({ close }) => {
                 </label>
               </StyledRadioBox>
 
-              {values.type === 'EXPENSE' ? (
+              {values.type === "EXPENSE" ? (
                 <StyledSelectMainDiv>
                   <Select
                     name="category"
                     styles={styles}
                     value={selectedCategory}
-                    onChange={value => onCategoryChange(value)}
+                    onChange={(value) => onCategoryChange(value)}
                     options={categories
-                      ?.filter(option => option.type === 'EXPENSE')
-                      .map(option => ({
+                      ?.filter((option) => option.type === "EXPENSE")
+                      .map((option) => ({
                         value: option.type,
                         label: option.name,
                         id: option.id,
                       }))}
                     placeholder={selectedCategory.label}
-                    theme={theme => ({
+                    theme={(theme) => ({
                       ...theme,
                       colors: {
-                        neutral50: '#fff',
+                        neutral50: "#fff",
                       },
                     })}
                   />
@@ -250,17 +250,17 @@ const AddTransactionForm = ({ close }) => {
                   type="number"
                   onInput={handleNumberInput}
                   placeholder="0.00"
-                  value={values.amount.toString().replace('-', '')}
+                  value={values.amount.toString().replace("-", "")}
                 />
                 <StyledWrapper>
                   <label>
                     <StyledDatePicker
                       name="transactionDate"
                       value={values.transactionDate}
-                      onChange={transactionDate => {
+                      onChange={(transactionDate) => {
                         handleChange({
                           target: {
-                            name: 'transactionDate',
+                            name: "transactionDate",
                             value: transactionDate,
                           },
                         });
@@ -268,12 +268,12 @@ const AddTransactionForm = ({ close }) => {
                       }}
                       dateFormat="dd.MM.yyyy"
                       placeholderText={`${new Date().toLocaleDateString(
-                        'uk-UA'
+                        "uk-UA"
                       )}`}
                       showIcon
                       selected={startDate}
                       maxDate={new Date()}
-                      style={{ float: 'left' }}
+                      style={{ float: "left" }}
                       icon={
                         <StyledIconCalendar width="24" height="24">
                           <use href={`${sprite}#calendar`} />
