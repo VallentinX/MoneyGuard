@@ -1,18 +1,12 @@
-// RegistrationPage.js
-import RegisterForm from "../../components/RegisterForm/RegisterForm";
-import {
-  ContentContainer,
-  MainContainer,
-} from "../../components/RegisterForm/RegisterForm.styled";
+import RegistrationForm from "components/RegistrationForm/RegistrationForm";
+import React from "react";
 
-const Register = () => {
+const RegistrationPage = () => {
   return (
-    <MainContainer isRegister={true}>
-      <ContentContainer>
-        <RegisterForm />
-      </ContentContainer>
-    </MainContainer>
+    <div>
+      <RegistrationForm />
+    </div>
   );
 };
 
-export default Register;
+export default RegistrationPage;
