@@ -1,7 +1,7 @@
 import React from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
-import pngwing from "../../images/pngwing.jpg";
+import pngwing from "../../images/pngwing.png";
 import { StyledChartP, StyledChartDiv } from "./Chart.styled";
 import { selectPeriodTotal } from "../../redux/transactions/selectors";
 import { useSelector } from "react-redux";
@@ -9,6 +9,8 @@ import PropTypes from "prop-types";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 const Chart = ({ dataDoughnut, categories }) => {
+  const imgStyle = { borderRadius: "150px", backgroundColor: "#fff" };
+
   const periodTotal = useSelector(selectPeriodTotal);
   return (
     <StyledChartDiv>
@@ -18,7 +20,7 @@ const Chart = ({ dataDoughnut, categories }) => {
           <StyledChartP>&#8364; {periodTotal}</StyledChartP>
         </div>
       ) : (
-        <img src={pngwing} alt="fff" />
+        <img src={pngwing} alt="fff" style={imgStyle} />
       )}
     </StyledChartDiv>
   );

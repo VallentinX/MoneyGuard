@@ -11,7 +11,7 @@ import {
   StyledStatisticDivChart,
   StyledStatisticDivMain,
   StyledStatisticTitle,
-} from "./StatisticsTab.styled";
+} from "./StatisticsTab.style";
 
 const StatisticsTab = () => {
   const categories = useSelector(selectCategoriesSummary);
