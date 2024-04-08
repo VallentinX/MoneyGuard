@@ -1,5 +1,5 @@
 {
-  "name": "money-guard",
+  "name": "react-app",
   "version": "1.0.0",
   "private": true,
   "homepage": "https://VallentinX.github.io/MoneyGuard/",
@@ -48,8 +48,8 @@
   },
   "eslintConfig": {
     "extends": [
-      "money-guard",
-      "money-guard/jest"
+      "react-app",
+      "react-app/jest"
     ]
   },
   "browserslist": {
