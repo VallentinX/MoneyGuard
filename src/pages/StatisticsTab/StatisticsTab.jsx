@@ -1,9 +1,5 @@
 import Chart from "components/Chart/Chart";
 import styled from "styled-components";
-import { CustomScroll } from "react-custom-scroll";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { selectCategoriesSummary } from "../../redux/transactions/selectors";
 import StatisticsDashboard from "components/StatisticsDashboard/StatisticsDashboard";
 import StatisticsTable from "components/StatisticsTable/StatisticsTable";
 import { useMediaQuery } from "react-responsive";
@@ -12,23 +8,7 @@ const Section = styled.section`
   height: 100vh;
 `;
 
-const Scrollbar = ({ children, className }) => {
-  return <CustomScroll className={className}>{children}</CustomScroll>;
-};
-
-const StyledScrollbar = styled(Scrollbar)`
-  & > div > div > div > div > div.rcs-inner-handle {
-    background-color: #734aef;
-  }
-`;
-
 const LeftSide = styled.div``;
-
-function generateRandomHexColor() {
-  const randomColor = Math.floor(Math.random() * 16777215).toString(16);
-
-  return "#" + "0".repeat(6 - randomColor.length) + randomColor;
-}
 
 const StatisticsTab = () => {
   const isMobileView = useMediaQuery({ maxWidth: 767 });
@@ -37,10 +17,10 @@ const StatisticsTab = () => {
   const Container = styled.div`
     display: flex;
     flex-direction: ${isMobileView ? "column" : "row"};
-    padding: ${isMobileView ? "45px 20px 40px" : "20px 32px 13px"};
-    padding: ${!isTabletView && "32px 16px 46px 69px"};
+    padding: ${isMobileView ? "8px 20px 45px" : "0 32px 13px"};
+    padding: ${!isTabletView && "32px 16px 46px 0"};
     gap: ${!isMobileView && "32px"};
-    max-width: 800px;
+    justify-content: space-between;
   `;
 
   const Title = styled.h2`
@@ -53,40 +33,22 @@ const StatisticsTab = () => {
   const RightSide = styled.div`
     width: 100%;
     padding-top: ${!isMobileView && "20px"};
+    max-width: 395px;
   `;
 
-  const [categories, setCategories] = useState([]);
-
-  const categoriesSummary = useSelector(selectCategoriesSummary);
-
-  useEffect(() => {
-    if (categoriesSummary.length > 0) {
-      const categorieList = categoriesSummary.map((categorie) => {
-        const color = generateRandomHexColor();
-        const name = categorie.name;
-        const total = categorie.total;
-        return { name, total, color };
-      });
-      setCategories(categorieList);
-    }
-  }, [categoriesSummary]);
-
   return (
-    <StyledScrollbar>
-      <Section>
-        <Container>
-          <LeftSide>
-            <Title>Statistics</Title>
-            <Chart categories={categories} />
-          </LeftSide>
-          <RightSide>
-            <StatisticsDashboard />
-            {/* <Test /> */}
-            <StatisticsTable categories={categories} />
-          </RightSide>
-        </Container>
-      </Section>
-    </StyledScrollbar>
+    <Section>
+      <Container>
+        <LeftSide>
+          <Title>Statistics</Title>
+          <Chart />
+        </LeftSide>
+        <RightSide>
+          <StatisticsDashboard />
+          <StatisticsTable />
+        </RightSide>
+      </Container>
+    </Section>
   );
 };
 

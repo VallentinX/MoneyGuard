@@ -149,10 +149,7 @@ const StatisticsDashboard = () => {
   }, []);
 
   useEffect(() => {
-    if (month.length > 0 && year.length > 0) {
-      //   console.log(
-      //     `transactions summary for the period ${month} ${year} has been requested`
-      //   );
+    if (month.toString().length > 0 && year.toString().length > 0) {
       dispatch(fetchTransactionsSummary({ month, year }));
     }
   }, [month, year, dispatch]);
@@ -179,7 +176,6 @@ const StatisticsDashboard = () => {
           setYear(newYear.value);
         }}
       />
-      {/* <Test /> */}
     </Container>
   );
 };
