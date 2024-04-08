@@ -48,8 +48,8 @@
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "money-guard",
+      "money-guard/jest"
     ]
   },
   "browserslist": {
