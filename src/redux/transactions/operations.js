@@ -1,15 +1,15 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
-import { swaggerApi } from '../auth/operations';
+import { swaggerApi } from "../auth/operations";
 
 export const fetchTransactionsThunk = createAsyncThunk(
-  'fetchAll',
+  "fetchAll",
 
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await swaggerApi.get('transactions');
+      const { data } = await swaggerApi.get("transactions");
 
       return data;
     } catch (error) {
@@ -19,7 +19,7 @@ export const fetchTransactionsThunk = createAsyncThunk(
 );
 
 export const addTransactionThunk = createAsyncThunk(
-  'addTransaction',
+  "addTransaction",
   async (body, { rejectWithValue }) => {
     const data = {
       transactionDate: body.transactionDate,
@@ -29,7 +29,7 @@ export const addTransactionThunk = createAsyncThunk(
       amount: body.amount,
     };
     try {
-      const res = await swaggerApi.post('transactions', data);
+      const res = await swaggerApi.post("transactions", data);
 
       return res.data;
     } catch (error) {
@@ -39,14 +39,14 @@ export const addTransactionThunk = createAsyncThunk(
 );
 
 export const deleteTransactionThunk = createAsyncThunk(
-  'deleteTransaction',
+  "deleteTransaction",
   async (id, { rejectWithValue }) => {
     try {
       await swaggerApi.delete(`transactions/${id}`);
-      const { data } = await swaggerApi.get('/users/current');
+      const { data } = await swaggerApi.get("/users/current");
       const newData = { data, id };
 
-      toast.success('Transaction delete success!');
+      toast.success("Transaction delete success!");
 
       return newData;
     } catch (error) {
@@ -57,7 +57,7 @@ export const deleteTransactionThunk = createAsyncThunk(
 );
 
 export const updateTransactionThunk = createAsyncThunk(
-  'updateTransaction',
+  "updateTransaction",
   async (body, thunkApi) => {
     const newBody = {
       transactionDate: body.transactionDate,
@@ -71,8 +71,8 @@ export const updateTransactionThunk = createAsyncThunk(
         `transactions/${body.id}`,
         newBody
       );
-      const { data: freshData } = await swaggerApi.get('/users/current');
-      toast.success('Edit completed!');
+      const { data: freshData } = await swaggerApi.get("/users/current");
+      toast.success("Edit completed!");
 
       const newData = { data, freshData };
 
@@ -85,10 +85,10 @@ export const updateTransactionThunk = createAsyncThunk(
 );
 
 export const fetchTransactionCategory = createAsyncThunk(
-  'transactionCategory',
+  "transactionCategory",
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await swaggerApi.get('transaction-categories');
+      const { data } = await swaggerApi.get("transaction-categories");
 
       return data;
     } catch (error) {
@@ -98,7 +98,7 @@ export const fetchTransactionCategory = createAsyncThunk(
 );
 
 export const fetchTransactionsSummary = createAsyncThunk(
-  'transactionsSummary',
+  "transactionsSummary",
   async ({ month, year }, { rejectWithValue }) => {
     try {
       const { data } = await swaggerApi.get(
