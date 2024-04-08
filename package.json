@@ -48,7 +48,7 @@
   },
   "eslintConfig": {
     "extends": [
-      "money-guard",
+      "react-app",
       "react-app/jest"
     ]
   },
