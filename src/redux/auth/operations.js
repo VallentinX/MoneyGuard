@@ -1,14 +1,14 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
-import axios from 'axios';
+import axios from "axios";
 
 export const swaggerApi = axios.create({
-  baseURL: 'https://wallet.b.goit.study/api/',
+  baseURL: "https://wallet.b.goit.study/api/",
 });
 
-const setToken = token => {
+const setToken = (token) => {
   swaggerApi.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
@@ -17,7 +17,7 @@ const clearToken = () => {
 };
 
 export const registerThunk = createAsyncThunk(
-  'register',
+  "register",
   async (credentials, { rejectWithValue }) => {
     try {
       const updatedCredentials = {
@@ -27,13 +27,13 @@ export const registerThunk = createAsyncThunk(
       };
 
       const { data } = await swaggerApi.post(
-        'auth/sign-up',
+        "auth/sign-up",
         updatedCredentials
       );
 
       setToken(data.token);
 
-      toast.success(`Welcome, ${data.user.email}`);
+      toast.success(`Welcome, ${data.user.username}`);
 
       return data;
     } catch (error) {
@@ -54,14 +54,14 @@ export const registerThunk = createAsyncThunk(
 );
 
 export const loginThunk = createAsyncThunk(
-  'login',
+  "login",
   async (credentials, { rejectWithValue }) => {
     try {
-      const { data } = await swaggerApi.post('auth/sign-in', credentials);
+      const { data } = await swaggerApi.post("auth/sign-in", credentials);
 
       setToken(data.token);
 
-      toast.success(`Hello, ${data.user.email}`);
+      toast.success(`Hello, ${data.user.username}`);
 
       return data;
     } catch (error) {
@@ -73,17 +73,17 @@ export const loginThunk = createAsyncThunk(
 );
 
 export const logoutThunk = createAsyncThunk(
-  'logout',
+  "logout",
   async (_, { rejectWithValue, getState }) => {
     try {
-      await swaggerApi.delete('auth/sign-out');
+      await swaggerApi.delete("auth/sign-out");
       clearToken();
 
-      toast.info(`Bye, ${getState().auth.user.email} `);
+      toast.info(`Bye, ${getState().auth.user.username} `);
     } catch (error) {
       switch (error.response.status) {
         case 401:
-          toast.error('Bearer auth failed. You are not authorized to log out.');
+          toast.error("Bearer auth failed. You are not authorized to log out.");
           break;
         default:
           toast.warning(`Something went wrong. Please try again later.`);
@@ -96,16 +96,16 @@ export const logoutThunk = createAsyncThunk(
 );
 
 export const refreshThunk = createAsyncThunk(
-  'refresh',
+  "refresh",
   async (_, { rejectWithValue, getState }) => {
     const savedToken = getState().auth.token;
 
     if (!savedToken) {
-      return rejectWithValue('token was not found');
+      return rejectWithValue("token was not found");
     }
     try {
       setToken(savedToken);
-      const { data } = await swaggerApi.get('/users/current');
+      const { data } = await swaggerApi.get("/users/current");
 
       return data;
     } catch (error) {

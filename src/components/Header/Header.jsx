@@ -34,10 +34,10 @@ const Header = () => {
   });
 
   const userData = useSelector(selectUser);
-  const email = userData?.username || "name.surname";
-  const index = email.indexOf("@");
-  const nameFromEmail = email.slice(0, index);
+  const displayUserName = userData.username;
+
   const [showLogoutConfirmation, setShowLogoutConfirmation] = useState(false);
+
   const disableBodyScroll = () => {
     document.body.style.overflow = "hidden";
   };
@@ -90,7 +90,7 @@ const Header = () => {
             </LogoBox>
           </Link>
           <HeaderInfo>
-            <AccountName>{nameFromEmail}</AccountName>
+            <AccountName>{displayUserName}</AccountName>
             {isDesktopOrLaptop && (
               <DividerImg src={dividerIcon} alt="divider-icon" />
             )}

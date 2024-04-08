@@ -1,35 +1,36 @@
-import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 
 import {
   loginThunk,
   logoutThunk,
   refreshThunk,
   registerThunk,
-} from './operations';
+} from "./operations";
 
 import {
   addTransactionThunk,
   deleteTransactionThunk,
   updateTransactionThunk,
-} from '../transactions/operations';
+} from "../transactions/operations";
 
 const initialState = {
   user: {
-    email: '',
-    password: '',
+    username: "",
+    email: "",
+    password: "",
   },
   balance: 0,
-  token: '',
+  token: "",
   isLoggedIn: false,
   isLoading: false,
   isRefresh: false,
 };
 
 export const slice = createSlice({
-  name: 'auth',
+  name: "auth",
   initialState,
 
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
       .addCase(logoutThunk.fulfilled, (state, { payload }) => {
         return (state = initialState);
@@ -43,6 +44,7 @@ export const slice = createSlice({
       .addCase(refreshThunk.fulfilled, (state, { payload }) => {
         state.isRefresh = false;
         state.isLoggedIn = true;
+        state.user.username = payload.username;
         state.user.email = payload.email;
         state.balance = payload.balance;
       })
@@ -56,7 +58,7 @@ export const slice = createSlice({
         state.balance = payload.data.balance;
       })
       .addMatcher(
-        isAnyOf(loginThunk.pending, registerThunk.pending, state => {
+        isAnyOf(loginThunk.pending, registerThunk.pending, (state) => {
           state.isLoading = true;
         })
       )

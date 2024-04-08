@@ -1,14 +1,14 @@
-import { Formik } from 'formik';
+import { Formik } from "formik";
 
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 
-import { updateTransactionThunk } from '../../redux/transactions/operations';
+import { updateTransactionThunk } from "../../redux/transactions/operations";
 
-import sprite from '../../images/sprite.svg';
+import sprite from "../../images/sprite.svg";
 
-import { object, string } from 'yup';
+import { object, string } from "yup";
 
 import {
   BtnSave,
@@ -26,13 +26,13 @@ import {
   StyledReqField,
   StyledWrapper,
   StyledlabelBox,
-} from './EditTransactionForm.styled';
+} from "./EditTransactionForm.style";
 
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-const handleNumberInput = e => {
+const handleNumberInput = (e) => {
   const inputValue = e.target.value;
-  const newValue = inputValue.replace(/[-+eE]/g, '');
+  const newValue = inputValue.replace(/[-+eE]/g, "");
 
   e.target.value = newValue;
 };
@@ -43,16 +43,16 @@ const EditTransactionForm = ({ transaction, close }) => {
   const [selectedType, setSelectedType] = useState(transaction.type);
 
   const AddSchema = object({
-    amount: string().required().min(1, 'Too Short!').max(12, 'Too Long!'),
-    comment: string().max(50, 'Too Long!'),
-    type: string().oneOf(['INCOME', 'EXPENSE'], 'Invalid transaction type'),
+    amount: string().required().min(1, "Too Short!").max(12, "Too Long!"),
+    comment: string().max(50, "Too Long!"),
+    type: string().oneOf(["INCOME", "EXPENSE"], "Invalid transaction type"),
   });
 
-  const handleSubmit = values => {
+  const handleSubmit = (values) => {
     const EditData = {
       id: transaction.id,
       amount:
-        values.type === 'EXPENSE'
+        values.type === "EXPENSE"
           ? -Math.abs(values.amount)
           : Math.abs(values.amount),
       transactionDate: values.transactionDate,
@@ -89,11 +89,11 @@ const EditTransactionForm = ({ transaction, close }) => {
                     type="radio"
                     name="type"
                     value="INCOME"
-                    disabled={values.type === 'EXPENSE' ? true : false}
-                    checked={values.type === 'INCOME'}
+                    disabled={values.type === "EXPENSE" ? true : false}
+                    checked={values.type === "INCOME"}
                     onChange={() => {
-                      setFieldValue('type', 'INCOME');
-                      setSelectedType('INCOME');
+                      setFieldValue("type", "INCOME");
+                      setSelectedType("INCOME");
                     }}
                   />
                   Income
@@ -103,12 +103,12 @@ const EditTransactionForm = ({ transaction, close }) => {
                   <CustomRadioInput
                     type="radio"
                     name="type"
-                    disabled={values.type === 'INCOME' ? true : false}
+                    disabled={values.type === "INCOME" ? true : false}
                     value="EXPENSE"
-                    checked={values.type === 'EXPENSE'}
+                    checked={values.type === "EXPENSE"}
                     onChange={() => {
-                      setFieldValue('type', 'EXPENSE');
-                      setSelectedType('EXPENSE');
+                      setFieldValue("type", "EXPENSE");
+                      setSelectedType("EXPENSE");
                     }}
                   />
                   Expense
@@ -120,7 +120,7 @@ const EditTransactionForm = ({ transaction, close }) => {
                     name="amount"
                     type="number"
                     onInput={handleNumberInput}
-                    value={values.amount.toString().replace('-', '')}
+                    value={values.amount.toString().replace("-", "")}
                     placeholder="0.0"
                   />
                   {errors.amount && touched.amount ? (
@@ -132,10 +132,10 @@ const EditTransactionForm = ({ transaction, close }) => {
                     <StyledEditDatePicker
                       name="transactionDate"
                       value={values.transactionDate}
-                      onChange={date => {
+                      onChange={(date) => {
                         handleChange({
                           target: {
-                            name: 'transactionDate',
+                            name: "transactionDate",
                             value: date,
                           },
                         });
@@ -143,12 +143,12 @@ const EditTransactionForm = ({ transaction, close }) => {
                       }}
                       dateFormat="dd.MM.yyyy"
                       placeholderText={`${values.transactionDate.toLocaleDateString(
-                        'uk-UA'
+                        "uk-UA"
                       )}`}
                       showIcon
                       selected={startDate}
                       maxDate={new Date()}
-                      style={{ float: 'left' }}
+                      style={{ float: "left" }}
                       icon={
                         <StyledIconCalendar width="24" height="24">
                           <use href={`${sprite}#calendar`} />

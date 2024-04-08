@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
 // const UseModal = () => {
 //   const [isOpen, setIsOpen] = useState(false);
@@ -26,7 +26,7 @@ import { useEffect, useState } from 'react';
 
 // export default UseModal;
 
-const useModal = () => {
+const UseModal = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState(null);
 
@@ -34,9 +34,9 @@ const useModal = () => {
     setIsOpen(false);
   };
 
-  const toggle = () => setIsOpen(prevIsOpen => !prevIsOpen);
+  const toggle = () => setIsOpen((prevIsOpen) => !prevIsOpen);
 
-  const open = content => {
+  const open = (content) => {
     setIsOpen(true);
     if (content !== null) {
       setData(content);
@@ -45,11 +45,11 @@ const useModal = () => {
 
   useEffect(() => {
     isOpen
-      ? (document.body.style.overflow = 'hidden')
-      : (document.body.style.overflow = 'auto');
+      ? (document.body.style.overflow = "hidden")
+      : (document.body.style.overflow = "auto");
   }, [isOpen]);
 
   return { isOpen, close, open, toggle, data };
 };
 
-export default useModal;
+export default UseModal;
