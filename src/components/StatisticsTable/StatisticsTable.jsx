@@ -1,6 +1,6 @@
-import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import {
+  selectCategoriesSummary,
   selectExpenseSummary,
   selectIncomeSummary,
   selectPeriodTotal,
@@ -91,7 +91,39 @@ const IncomeSum = styled.span`
   color: rgb(255, 182, 39);
 `;
 
-const StatisticsTable = ({ categories }) => {
+const colors = [
+  "#fed057",
+  "#ffd8d0",
+  "#fd9498",
+  "#c5baff",
+  "#6e78e8",
+  "#4a56e2",
+  "#81e1ff",
+  "#24cca7",
+  "#00ad84",
+];
+
+const StatisticsTable = () => {
+  const total = useSelector(selectPeriodTotal);
+  const expenses = useSelector(selectExpenseSummary);
+  const income = useSelector(selectIncomeSummary);
+  const transactionCategories = useSelector(selectCategoriesSummary);
+
+  let categories = [];
+
+  if (total > 0) {
+    categories = transactionCategories.map((transactionCategorie) => {
+      const name = transactionCategorie.name;
+      const total = transactionCategorie.total;
+      const color = colors[transactionCategories.indexOf(transactionCategorie)];
+      return {
+        name,
+        total,
+        color,
+      };
+    });
+  }
+
   const isDesktopView = useMediaQuery({ minWidth: 1280 });
 
   const Category = styled.li`
@@ -114,28 +146,6 @@ const StatisticsTable = ({ categories }) => {
     padding: ${isDesktopView ? "28px 28px 12px 28px" : "16px 16px 0 16px"};
   `;
 
-  const total = useSelector(selectPeriodTotal);
-  const expenses = useSelector(selectExpenseSummary);
-  const income = useSelector(selectIncomeSummary);
-
-  // const categoryList = [
-  //   {
-  //     name: "Main expenses",
-  //     total: 8700,
-  //     color: "rgb(254, 208,87)",
-  //   },
-  //   {
-  //     name: "Products",
-  //     total: 3800.74,
-  //     color: "rgb(255,216,208)",
-  //   },
-  //   {
-  //     name: "Car",
-  //     total: 1500,
-  //     color: "rgb(253,148,152)",
-  //   },
-  // ];
-
   return (
     <Container>
       <Columns>
@@ -145,7 +155,7 @@ const StatisticsTable = ({ categories }) => {
       {total > 0 ? (
         <CategoryList>
           {categories.map((category) => (
-            <Category>
+            <Category key={category.name}>
               <LeftSide>
                 <Color style={{ backgroundColor: category.color }}></Color>
                 <Name>{category.name}</Name>
@@ -171,10 +181,6 @@ const StatisticsTable = ({ categories }) => {
       </Totals>
     </Container>
   );
-};
-
-StatisticsTable.propTypes = {
-  categories: PropTypes.array,
 };
 
 export default StatisticsTable;

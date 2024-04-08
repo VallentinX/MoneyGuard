@@ -70,8 +70,6 @@ export const StyledContainer = styled.div`
   padding-left: 20px;
   padding-right: 20px;
   margin-left: auto;
-
-  overflow: hidden;
   margin-right: auto;
   min-width: 320px;
   max-width: 425px;

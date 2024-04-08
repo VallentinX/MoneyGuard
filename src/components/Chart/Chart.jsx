@@ -2,8 +2,10 @@ import styled from "styled-components";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import { useSelector } from "react-redux";
-import { selectPeriodTotal } from "../../redux/transactions/selectors";
-import PropTypes from "prop-types";
+import {
+  selectCategoriesSummary,
+  selectPeriodTotal,
+} from "../../redux/transactions/selectors";
 import { useMediaQuery } from "react-responsive";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -38,9 +40,36 @@ const plugins = [
   },
 ];
 
-const Chart = ({ categories }) => {
-  const isMobileView = useMediaQuery({ maxWidth: 767 });
-  const isTabletView = useMediaQuery({ maxWidth: 1279 });
+const colors = [
+  "#fed057",
+  "#ffd8d0",
+  "#fd9498",
+  "#c5baff",
+  "#6e78e8",
+  "#4a56e2",
+  "#81e1ff",
+  "#24cca7",
+  "#00ad84",
+];
+
+const Chart = () => {
+  const periodTotal = useSelector(selectPeriodTotal);
+  const transactionCategories = useSelector(selectCategoriesSummary);
+
+  let categories = [];
+
+  if (periodTotal > 0) {
+    categories = transactionCategories.map((transactionCategorie) => {
+      const name = transactionCategorie.name;
+      const total = transactionCategorie.total;
+      const color = colors[transactionCategories.indexOf(transactionCategorie)];
+      return {
+        name,
+        total,
+        color,
+      };
+    });
+  }
 
   const categoriesTotal = categories.map((categorie) => {
     return categorie.total;
@@ -49,6 +78,9 @@ const Chart = ({ categories }) => {
   const categoriesColor = categories.map((categorie) => {
     return categorie.color;
   });
+
+  const isMobileView = useMediaQuery({ maxWidth: 767 });
+  const isTabletView = useMediaQuery({ maxWidth: 1279 });
 
   const data = {
     labels: [],
@@ -59,8 +91,6 @@ const Chart = ({ categories }) => {
       },
     ],
   };
-
-  const periodTotal = useSelector(selectPeriodTotal);
 
   if (periodTotal === 0) {
     data.datasets[0].data = [1];
@@ -100,10 +130,6 @@ const Chart = ({ categories }) => {
       </ChartContainer>
     </Container>
   );
-};
-
-Chart.propTypes = {
-  categories: PropTypes.array,
 };
 
 export default Chart;
