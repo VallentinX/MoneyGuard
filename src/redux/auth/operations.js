@@ -21,7 +21,7 @@ export const registerThunk = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const updatedCredentials = {
-        username: credentials.name,
+        username: credentials.username,
         email: credentials.email,
         password: credentials.password,
       };
