@@ -1,4 +1,4 @@
-import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 
 import {
   addTransactionThunk,
@@ -7,7 +7,7 @@ import {
   fetchTransactionsSummary,
   fetchTransactionsThunk,
   updateTransactionThunk,
-} from './operations';
+} from "./operations";
 
 const initialState = {
   transactions: {
@@ -19,8 +19,8 @@ const initialState = {
   summary: {
     categoriesSummary: [
       {
-        name: '',
-        type: '',
+        name: "",
+        type: "",
         total: 0,
       },
     ],
@@ -33,10 +33,10 @@ const initialState = {
 };
 
 export const slice = createSlice({
-  name: 'transactions',
+  name: "transactions",
   initialState,
-  
-  extraReducers: builder => {
+
+  extraReducers: (builder) => {
     builder
       .addCase(fetchTransactionsThunk.fulfilled, (state, { payload }) => {
         state.transactions.items = payload;
@@ -46,11 +46,11 @@ export const slice = createSlice({
       })
       .addCase(deleteTransactionThunk.fulfilled, (state, { payload }) => {
         state.transactions.items = state.transactions.items.filter(
-          transaction => transaction.id !== payload.id
+          (transaction) => transaction.id !== payload.id
         );
       })
       .addCase(updateTransactionThunk.fulfilled, (state, { payload }) => {
-        state.transactions.items = state.transactions.items.map(transaction =>
+        state.transactions.items = state.transactions.items.map((transaction) =>
           transaction.id === payload.data.id ? payload.data : transaction
         );
       })
